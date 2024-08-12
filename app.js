@@ -1,6 +1,7 @@
 const gameBoard = document.querySelector('#gameBoard');
 const scoreText = document.querySelector('#scoreText');
 const resetBtn = document.querySelector('#resetBtn');
+const ctx = gameBoard.getContext('2d');
 
 //  DEFAULT WINDOW PARAMETERS
 const boardWidth = gameBoard.width;
@@ -25,4 +26,15 @@ const Direction = {
     UP: {x: 0, y: (-1 * units)},
     DOWN: {x: 0, y: units},
 }
+
+window.onload = function() {
+    context = gameBoard.getContext('2d');
+    requestAnimationFrame(update);
+}
+
+function update() {
+    requestAnimationFrame(update);
+    context.clearRect(0, 0, boardWidth, boardHeight);
+} 
+
 
