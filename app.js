@@ -39,6 +39,7 @@ window.onload = function() {
 
 function update() {
     moveSnake();
+    borderCollision();
     updateScore();
 } 
 
@@ -99,6 +100,19 @@ function moveSnake () {
     }
 }
 
+// Border collision effect Function
+function borderCollision () {
+    if((snake[0].x + direction.x * cellSize) > boardWidth) {
+        snake[0].x = 0;
+    } else if ((snake[0].x - direction.x * cellSize) < 0) {
+        snake[0].x = boardWidth;
+    } else if ((snake[0].y + direction.y * cellSize) > boardWidth) {
+        snake[0].y = 0;
+    } else if ((snake[0].y - direction.y * cellSize) < 0) {
+        snake[0].y = boardWidth;
+    }
+}
+
 // Function to randomly generate an apple, in the unit grid
 function generateApple () {
     apple.x = (Math.round(Math.random() * (nCells - 1)) * units);
@@ -121,15 +135,7 @@ function spawnSnake () {
     drawGame();
 }
 
-// TODO FUNCTIONS
-function startGame() {}
-function updateScore () {
-    scoreText.textContent = snake.length - 5;
-}
-function resetScore () {}
-function isGameOver () {}
-function borderCollision () {}
-
+// Eating functions
 function increaseLength () {
     let newHead = {
         x: snake[0].x + direction.x * cellSize,
@@ -140,12 +146,25 @@ function increaseLength () {
 
     drawGame();
 }
-
 function eatApple () {
         generateApple();
         increaseLength();
         drawGame();
 }
+
+// Update the score
+function updateScore () {
+    scoreText.textContent = snake.length - 5;
+}
+
+
+
+// TODO FUNCTIONS
+function startGame() {}
+function resetScore () {}
+function isGameOver () {}
+
+
 
 
 
