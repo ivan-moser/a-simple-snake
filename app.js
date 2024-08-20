@@ -3,6 +3,8 @@ const scoreText = document.querySelector('#scoreText');
 const resetBtn = document.querySelector('#resetBtn');
 const ctx = gameBoard.getContext('2d');
 
+let isGameOver = false;
+
 //  DEFAULT WINDOW PARAMETERS
 const boardWidth = gameBoard.width;
 
@@ -12,6 +14,7 @@ const nCells = 20;
 const cellSize = boardWidth / nCells;
 const drawSize = cellSize - 1;
 let intervalTime = 200;
+let gameInterval = setInterval(update, intervalTime);
 
 // SNAKE
 let snake = [
@@ -38,9 +41,15 @@ window.onload = function() {
 }
 
 function update() {
+    if (isGameOver) return; 
+
     moveSnake();
     borderCollision();
     updateScore();
+
+    if (isGameOverFunc(snake, direction)) {
+        gameOver();
+    }
 } 
 
 function drawGame() {
@@ -53,6 +62,26 @@ function drawGame() {
     ctx.fillStyle = 'red';
     ctx.fillRect(apple.x, apple.y, drawSize, drawSize);
 
+}
+
+function gameOver() {
+    isGameOver = true;
+    clearInterval(gameInterval);
+
+    if (confirm("Game Over! Vuoi ricominciare?")) {
+        resetGame();
+    } else {
+        alert("Grazie per aver giocato!");
+    }
+}
+
+function resetGame() {
+    isGameOver = false;
+    direction = {x: 1, y: 0};
+    spawnSnake();
+    generateApple();
+    updateScore();
+    gameInterval = setInterval(update, intervalTime);
 }
 
 
@@ -157,12 +186,30 @@ function updateScore () {
     scoreText.textContent = snake.length - 5;
 }
 
+// Function to check the game over
+function isGameOverFunc(snake, direction) {
+    const nextHeadX = snake[0].x + direction.x * cellSize;
+    const nextHeadY = snake[0].y + direction.y * cellSize;
+
+    for (let i = 1; i < snake.length; i++) {
+        if (snake[i].x === nextHeadX && snake[i].y === nextHeadY) {
+            return true; 
+        }
+    }
+
+    return false;
+}
+
+// PULSANTE RESET
+resetBtn.addEventListener('click', resetGame);
+
 
 
 // TODO FUNCTIONS
 function startGame() {}
-function resetScore () {}
-function isGameOver () {}
+
+
+
 
 
 
