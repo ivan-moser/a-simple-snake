@@ -77,7 +77,6 @@ function gameOver() {
     clearInterval(gameInterval);
     scoreText.style.fontSize = '50px';
     resetBtn.style.color = 'hsl(0, 75%, 90%)';
-    resetBtn.style.textShadow = '0 0 5px #ffffff';
     scoreText.textContent = 'GAME OVER';
     resetBtn.background = 'rgb(170, 34, 34)';
 }
@@ -93,8 +92,9 @@ function resetGame() {
 }
 
 function resetColors() {
-    resetBtn.style.color = 'hsl(0, 74%, 62%)';
+    resetBtn.style.color = 'hsl(0, 55%, 33%)';
     resetBtn.background = 'rgb(102, 19, 19)';
+    
 }
 
 

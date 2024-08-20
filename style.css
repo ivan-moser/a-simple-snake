@@ -2,18 +2,21 @@
 html, body {
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
     margin: 0;
     padding: 0;
     background-color: #56455f;
 }
 
 .gameContainer {
-    margin-top: 50px;
     text-align: center;
     background-color: #2d1f35;
     border-radius: 30px;
     width: 600px;
     box-shadow: 10px 7px #18111b;
+    height: 850px;
 }
 
 #gameBoard {
@@ -23,6 +26,22 @@ html, body {
     border-radius: 30px;
     background-color: #134426;
     box-shadow: inset 10px 7px #0e351d;
+}
+
+#title {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 40px;
+    font-weight: 600px;
+    margin: 50px 0px 46px 46px;
+    color: #5d4866;
+    text-shadow: 3px 3px #19101d;
+}
+
+#version {
+    font-family: 'Dancing Script', cursive;
+    color: #3a945c;
+    font-weight: 200;
+    text-shadow: hsl(143, 44%, 60%) !important;
 }
 
 #scoreText {
@@ -65,7 +84,6 @@ html, body {
 
 #resetBtn:active {
     background: rgb(253, 89, 89);
-    color: rgb(255, 255, 255);
     transform: translate(6px, 3px);
     box-shadow: none;
 }
