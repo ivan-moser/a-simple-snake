@@ -27,6 +27,9 @@ const Direction = {
     DOWN: {x: 0, y: units},
 }
 
+
+// FUNCTIONS
+
 window.onload = function() {
     context = gameBoard.getContext('2d');
     requestAnimationFrame(update);
@@ -36,5 +39,15 @@ function update() {
     requestAnimationFrame(update);
     context.clearRect(0, 0, boardWidth, boardHeight);
 } 
+
+
+function generateApple () {
+    ctx.rect((Math.round(Math.random() * (nCells - 1)) * units), 
+            (Math.round(Math.random() * (nCells - 1)) * units),
+            cellSize, cellSize);
+    ctx.fill();
+}
+
+generateApple();
 
 
