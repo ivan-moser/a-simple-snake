@@ -10,6 +10,8 @@ const boardWidth = gameBoard.width;
 const units = 25;
 const nCells = 20;
 const cellSize = boardWidth / nCells;
+const drawSize = cellSize - 1;
+let intervalTime = 200;
 
 // SNAKE
 let snake = [
@@ -19,7 +21,10 @@ let snake = [
     {x: 3, y: 0},
     {x: 4, y: 0}
 ];
-let direction = {x: 0, y: 0};
+let direction = {x: 1, y: 0};
+
+// APPLE
+let apple = {x: 0, y: 0};
 
 
 // ===== FUNCTIONS =====
@@ -29,13 +34,24 @@ window.onload = function() {
     document.addEventListener('keydown', changeDirection);
     spawnSnake();
     generateApple();
-    requestAnimationFrame(update);
+    setInterval(update, intervalTime);
 }
 
 function update() {
     moveSnake();
-    requestAnimationFrame(update);
 } 
+
+function drawGame() {
+    ctx.clearRect(0, 0, boardWidth, boardWidth);
+    ctx.fillStyle = 'green';
+    snake.forEach(part => {
+        ctx.fillRect(part.x, part.y, drawSize, drawSize)
+    });
+
+    ctx.fillStyle = 'red';
+    ctx.fillRect(apple.x, apple.y, drawSize, drawSize);
+
+}
 
 
 // Functions to move the snake:
@@ -75,29 +91,29 @@ function moveSnake () {
     snake.unshift(newHead);
     snake.pop();
 
-    drawGame(); //todo
+    drawGame();
 }
 
 // Function to randomly generate an apple, in the unit grid
 function generateApple () {
-    let appleX = (Math.round(Math.random() * (nCells - 1)) * units);
-    let appleY = (Math.round(Math.random() * (nCells - 1)) * units);
-
-    ctx.fillStyle = 'red';
-    ctx.fillRect(appleX, appleY , cellSize-1, cellSize-1);
-
-    console.log('Apple X: ' + appleX + ' Apple Y: ' + appleY);
+    apple.x = (Math.round(Math.random() * (nCells - 1)) * units);
+    apple.y = (Math.round(Math.random() * (nCells - 1)) * units);
 }
 
 // Function to spawn the snake in the middle of the Canvas
 function spawnSnake () {
-    let initialX = Math.round((nCells / 2) * units);
-    let initialY = Math.round((nCells / 2) * units);
+    let initialX = Math.floor((nCells / 2) * units);
+    let initialY = Math.floor((nCells / 2) * units);
 
-    ctx.fillStyle = 'green';
-    snake.forEach(pieceOfSnake => {
-        ctx.fillRect(initialX-(pieceOfSnake.x * units), initialY, cellSize-1, cellSize-1);
-    });
+    snake = [];
+    for (let i = 0; i < 5; i++) {
+        snake.push({
+            x: initialX - (i * cellSize),
+            y: initialY
+        });
+    }
+
+    drawGame();
 }
 
 // TODO FUNCTIONS
