@@ -19,30 +19,64 @@ let snake = [
     {x: 3, y: 0},
     {x: 4, y: 0}
 ];
-
-const Direction = {
-    LEFT: {x: (-1 * units), y: 0},
-    RIGHT: {x: units, y: 0},
-    UP: {x: 0, y: (-1 * units)},
-    DOWN: {x: 0, y: units},
-}
+let direction = {x: 0, y: 0};
 
 
-// FUNCTIONS
+// ===== FUNCTIONS =====
+// Core functions
 
 window.onload = function() {
-    context = gameBoard.getContext('2d');
-    requestAnimationFrame(update);
+    document.addEventListener('keydown', changeDirection);
     spawnSnake();
     generateApple();
+    requestAnimationFrame(update);
 }
 
 function update() {
+    moveSnake();
     requestAnimationFrame(update);
 } 
 
 
-function startGame() {}
+// Functions to move the snake:
+// Direction handler
+function changeDirection(event) {
+    switch(event.key) {
+        case 'ArrowUp':
+        case 'w':
+            if (direction.y === 0) {
+                direction = {x: 0, y: -1};
+            } break;
+        case 'ArrowDown':
+        case 's':
+            if (direction.y === 0) {
+                direction = {x: 0, y: 1};
+            } break;
+        case "ArrowLeft":
+        case "a":
+            if (direction.x === 0) {
+                direction = {x: -1, y: 0};
+            } break;
+        case "ArrowRight":
+        case "d":
+            if (direction.x === 0) {
+                direction = {x: 1, y: 0};
+            } break;
+    }
+}
+// Move the body with the direction handler
+function moveSnake () {
+
+    let newHead = {
+        x: snake[0].x + direction.x * cellSize,
+        y: snake[0].y + direction.y * cellSize
+    };
+
+    snake.unshift(newHead);
+    snake.pop();
+
+    drawGame(); //todo
+}
 
 // Function to randomly generate an apple, in the unit grid
 function generateApple () {
@@ -50,13 +84,10 @@ function generateApple () {
     let appleY = (Math.round(Math.random() * (nCells - 1)) * units);
 
     ctx.fillStyle = 'red';
-    ctx.fillRect(appleX, appleY , cellSize, cellSize);
+    ctx.fillRect(appleX, appleY , cellSize-1, cellSize-1);
 
     console.log('Apple X: ' + appleX + ' Apple Y: ' + appleY);
 }
-
-function increaseScore () {}
-function resetScore () {}
 
 // Function to spawn the snake in the middle of the Canvas
 function spawnSnake () {
@@ -64,15 +95,15 @@ function spawnSnake () {
     let initialY = Math.round((nCells / 2) * units);
 
     ctx.fillStyle = 'green';
-    /* ctx.fillRect(initialX, initialY, cellSize, cellSize); */
     snake.forEach(pieceOfSnake => {
-        ctx.fillRect(initialX-(pieceOfSnake.x * units), initialY, cellSize, cellSize);
+        ctx.fillRect(initialX-(pieceOfSnake.x * units), initialY, cellSize-1, cellSize-1);
     });
-
-    console.log('X: ' + initialX + ' Y: ' + initialY);
 }
 
-function moveSnake () {}
+// TODO FUNCTIONS
+function startGame() {}
+function increaseScore () {}
+function resetScore () {}
 function isGameOver () {}
 function borderCollision () {}
 function increaseLength () {}
