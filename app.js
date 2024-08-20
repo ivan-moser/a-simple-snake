@@ -39,6 +39,7 @@ window.onload = function() {
 
 function update() {
     moveSnake();
+    updateScore();
 } 
 
 function drawGame() {
@@ -122,7 +123,9 @@ function spawnSnake () {
 
 // TODO FUNCTIONS
 function startGame() {}
-function increaseScore () {}
+function updateScore () {
+    scoreText.textContent = snake.length - 5;
+}
 function resetScore () {}
 function isGameOver () {}
 function borderCollision () {}
