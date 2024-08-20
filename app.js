@@ -1,5 +1,5 @@
 const gameBoard = document.querySelector('#gameBoard');
-const scoreText = document.querySelector('#scoreText');
+const scoreText = document.getElementById('scoreText');
 const resetBtn = document.querySelector('#resetBtn');
 const ctx = gameBoard.getContext('2d');
 
@@ -35,9 +35,10 @@ let apple = {x: 0, y: 0};
 
 window.onload = function() {
     document.addEventListener('keydown', changeDirection);
+    resetBtn.addEventListener('click', resetGame);
     spawnSnake();
     generateApple();
-    setInterval(update, intervalTime);
+    updateGameSpeed(200);
 }
 
 function update() {
@@ -51,6 +52,13 @@ function update() {
         gameOver();
     }
 } 
+
+// Update the speed of the game
+function updateGameSpeed(newIntervalTime) {
+    clearInterval(gameInterval);
+    intervalTime = newIntervalTime;
+    gameInterval = setInterval(update, intervalTime); 
+}
 
 function drawGame() {
     ctx.clearRect(0, 0, boardWidth, boardWidth);
@@ -67,21 +75,26 @@ function drawGame() {
 function gameOver() {
     isGameOver = true;
     clearInterval(gameInterval);
-
-    if (confirm("Game Over! Vuoi ricominciare?")) {
-        resetGame();
-    } else {
-        alert("Grazie per aver giocato!");
-    }
+    scoreText.style.fontSize = '50px';
+    resetBtn.style.color = 'hsl(0, 75%, 90%)';
+    resetBtn.style.textShadow = '0 0 5px #ffffff';
+    scoreText.textContent = 'GAME OVER';
+    resetBtn.background = 'rgb(170, 34, 34)';
 }
 
 function resetGame() {
     isGameOver = false;
     direction = {x: 1, y: 0};
+    resetColors();
     spawnSnake();
     generateApple();
     updateScore();
-    gameInterval = setInterval(update, intervalTime);
+    updateGameSpeed(200);
+}
+
+function resetColors() {
+    resetBtn.style.color = 'hsl(0, 74%, 62%)';
+    resetBtn.background = 'rgb(102, 19, 19)';
 }
 
 
