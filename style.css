@@ -19,6 +19,20 @@ html, body {
     height: 850px;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subtitles {
+    display: flex;
+    align-self: end;
+    margin-top: 20px;
+    color: #18111b; 
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 #gameBoard {
 
     margin-top: 54px;
@@ -80,6 +94,11 @@ html, body {
 #resetBtn:hover {
     background: rgb(155, 32, 32);
     cursor: pointer;
+}
+
+#resetBtn:focus-visible,  #resetBtn:focus{
+    transform: none;
+    border: none;
 }
 
 #resetBtn:active {
