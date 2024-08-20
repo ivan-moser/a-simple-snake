@@ -33,21 +33,51 @@ const Direction = {
 window.onload = function() {
     context = gameBoard.getContext('2d');
     requestAnimationFrame(update);
+    spawnSnake();
+    generateApple();
 }
 
 function update() {
     requestAnimationFrame(update);
-    context.clearRect(0, 0, boardWidth, boardHeight);
 } 
 
 
+function startGame() {}
+
+// Function to randomly generate an apple, in the unit grid
 function generateApple () {
-    ctx.rect((Math.round(Math.random() * (nCells - 1)) * units), 
-            (Math.round(Math.random() * (nCells - 1)) * units),
-            cellSize, cellSize);
-    ctx.fill();
+    let appleX = (Math.round(Math.random() * (nCells - 1)) * units);
+    let appleY = (Math.round(Math.random() * (nCells - 1)) * units);
+
+    ctx.fillStyle = 'red';
+    ctx.fillRect(appleX, appleY , cellSize, cellSize);
+
+    console.log('Apple X: ' + appleX + ' Apple Y: ' + appleY);
 }
 
-generateApple();
+function increaseScore () {}
+function resetScore () {}
+
+// Function to spawn the snake in the middle of the Canvas
+function spawnSnake () {
+    let initialX = Math.round((nCells / 2) * units);
+    let initialY = Math.round((nCells / 2) * units);
+
+    ctx.fillStyle = 'green';
+    /* ctx.fillRect(initialX, initialY, cellSize, cellSize); */
+    snake.forEach(pieceOfSnake => {
+        ctx.fillRect(initialX-(pieceOfSnake.x * units), initialY, cellSize, cellSize);
+    });
+
+    console.log('X: ' + initialX + ' Y: ' + initialY);
+}
+
+function moveSnake () {}
+function isGameOver () {}
+function borderCollision () {}
+function increaseLength () {}
+function eatApple () {}
+
+
 
 
