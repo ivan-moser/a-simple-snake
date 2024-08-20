@@ -218,9 +218,6 @@ resetBtn.addEventListener('click', resetGame);
 
 
 
-// TODO FUNCTIONS
-function startGame() {}
-
 
 
 
