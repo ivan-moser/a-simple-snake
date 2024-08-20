@@ -82,16 +82,20 @@ function changeDirection(event) {
 }
 // Move the body with the direction handler
 function moveSnake () {
+        let newHead = {
+            x: snake[0].x + direction.x * cellSize,
+            y: snake[0].y + direction.y * cellSize
+        };
+        if (!(newHead.x === apple.x && newHead.y === apple.y)) {
 
-    let newHead = {
-        x: snake[0].x + direction.x * cellSize,
-        y: snake[0].y + direction.y * cellSize
-    };
+            snake.unshift(newHead);
+            snake.pop();
 
-    snake.unshift(newHead);
-    snake.pop();
-
-    drawGame();
+            drawGame();
+        } else {
+            eatApple();
+            console.log(snake.length);
+    }
 }
 
 // Function to randomly generate an apple, in the unit grid
@@ -122,8 +126,23 @@ function increaseScore () {}
 function resetScore () {}
 function isGameOver () {}
 function borderCollision () {}
-function increaseLength () {}
-function eatApple () {}
+
+function increaseLength () {
+    let newHead = {
+        x: snake[0].x + direction.x * cellSize,
+        y: snake[0].y + direction.y * cellSize
+    };
+
+    snake.unshift(newHead);
+
+    drawGame();
+}
+
+function eatApple () {
+        generateApple();
+        increaseLength();
+        drawGame();
+}
 
 
 
