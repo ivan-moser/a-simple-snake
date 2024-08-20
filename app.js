@@ -201,8 +201,8 @@ function updateScore () {
 
 // Function to check the game over
 function isGameOverFunc(snake, direction) {
-    const nextHeadX = snake[0].x + direction.x * cellSize;
-    const nextHeadY = snake[0].y + direction.y * cellSize;
+    const nextHeadX = snake[0].x;
+    const nextHeadY = snake[0].y;
 
     for (let i = 1; i < snake.length; i++) {
         if (snake[i].x === nextHeadX && snake[i].y === nextHeadY) {
