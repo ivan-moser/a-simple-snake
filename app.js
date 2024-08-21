@@ -1,5 +1,6 @@
 const gameBoard = document.querySelector('#gameBoard');
 const scoreText = document.getElementById('scoreText');
+const buttons = document.querySelectorAll('.colors');
 const resetBtn = document.querySelector('#resetBtn');
 const ctx = gameBoard.getContext('2d');
 
@@ -16,6 +17,8 @@ const cellSize = boardWidth / nCells;
 const drawSize = cellSize - 1;
 let intervalTime = 200;
 let gameInterval = setInterval(update, intervalTime); 
+
+let color = 'green';
 
 // SNAKE
 let snake = [
@@ -64,7 +67,7 @@ function updateGameSpeed(newIntervalTime) {
 
 function drawGame() {
     ctx.clearRect(0, 0, boardWidth, boardWidth);
-    ctx.fillStyle = 'green';
+    ctx.fillStyle = color;
     snake.forEach(part => {
         ctx.fillRect(part.x, part.y, drawSize, drawSize)
     });
@@ -234,9 +237,48 @@ function isGameOverFunc(snake, direction) {
     return false;
 }
 
+// ==== BUTTONS ====
+
 // PULSANTE RESET
 resetBtn.addEventListener('click', resetGame => {
     event.target.blur(); 
+});
+
+function handleGreen() {
+    color = 'green';
+}
+
+function handlePink() {
+    color = 'pink';
+}
+
+function handleBlue() {
+    color = 'lightskyblue';
+}
+
+function handleRainbow() {
+    
+}
+
+buttons.forEach(button => {
+    button.addEventListener('click', function() {
+        const id = this.id;
+
+        switch(id) {
+            case 'green':
+                handleGreen();
+                break;
+            case 'pink':
+                handlePink();
+                break;
+            case 'blue':
+                handleBlue();
+                break;
+            case 'rainbow':
+                handleRainbow();
+                break;
+        }
+    });
 });
 
 

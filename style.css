@@ -144,6 +144,9 @@ html, body {
     background-color: lightskyblue;
 }
 
+#pink {
+    background-color: rgb(221, 113, 163) ;
+}
 #rainbow {
     background: linear-gradient(90deg, 
     red 16.66%, 
@@ -152,8 +155,4 @@ html, body {
     green 50% 66.66%, 
     blue 66.66% 83.33%, 
     indigo 83.33% 100%);
-}
-
-#pink {
-    background-color: rgb(221, 113, 163) ;
 }
