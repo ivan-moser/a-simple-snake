@@ -236,7 +236,7 @@ function isGameOverFunc(snake, direction) {
 
 // PULSANTE RESET
 resetBtn.addEventListener('click', resetGame => {
-    event.target.blur();
+    event.target.blur(); 
 });
 
 

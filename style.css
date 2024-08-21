@@ -107,3 +107,53 @@ html, body {
     transform: translate(6px, 3px);
     box-shadow: none;
 }
+
+
+.colorSelectorContainer {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 50px;
+    height: 100px;
+    width: 100%;
+    background-color: #2d1f35;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 10px 7px #18111b;
+    overflow: hidden;
+}
+
+.colorSelectorContainer button {
+    justify-content: space-around;
+    height: 100%;
+    width: 100%;
+}
+
+.colors {
+    cursor: pointer;
+    transition: filter 0.3s ease;
+}
+.colors:hover {
+    filter: brightness(1.5);
+}
+
+#green {
+    background-color: green;
+}
+
+#blue {
+    background-color: lightskyblue;
+}
+
+#rainbow {
+    background: linear-gradient(90deg, 
+    red 16.66%, 
+    orange 16.66% 33.33%, 
+    yellow 33.33% 50%, 
+    green 50% 66.66%, 
+    blue 66.66% 83.33%, 
+    indigo 83.33% 100%);
+}
+
+#pink {
+    background-color: rgb(221, 113, 163) ;
+}
