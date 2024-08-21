@@ -178,13 +178,13 @@ function moveSnake () {
 
 // Border collision effect Function
 function borderCollision () {
-    if((snake[0].x + direction.x * cellSize) > boardWidth) {
+    if((snake[0].x) > boardWidth) {
         snake[0].x = 0;
-    } else if ((snake[0].x - direction.x * cellSize) < 0) {
+    } else if ((snake[0].x) < 0) {
         snake[0].x = boardWidth;
-    } else if ((snake[0].y + direction.y * cellSize) > boardWidth) {
+    } else if ((snake[0].y) > boardWidth) {
         snake[0].y = 0;
-    } else if ((snake[0].y - direction.y * cellSize) < 0) {
+    } else if ((snake[0].y) < 0) {
         snake[0].y = boardWidth;
     }
 }
@@ -273,6 +273,7 @@ function handleRainbow() {
 
 buttons.forEach(button => {
     button.addEventListener('click', function() {
+        event.target.blur(); 
         const id = this.id;
 
         switch(id) {

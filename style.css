@@ -13,7 +13,7 @@ html, body {
 .gameContainer {
     text-align: center;
     background-color: #2d1f35;
-    border-radius: 30px;
+    border-radius: 30px 30px 0 0;
     width: 600px;
     box-shadow: 10px 7px #18111b;
     height: 850px;
@@ -112,18 +112,19 @@ html, body {
 .colorSelectorContainer {
     display: flex;
     justify-content: space-evenly;
-    margin-top: 50px;
+    gap: 3px;
+    margin-top: 0px;
     height: 100px;
     width: 100%;
     background-color: #2d1f35;
     border: none;
-    border-radius: 30px;
+    border-radius: 0 0px 30px 30px;
     box-shadow: 10px 7px #18111b;
     overflow: hidden;
 }
 
 .colorSelectorContainer button {
-    justify-content: space-around;
+    border: none;
     height: 100%;
     width: 100%;
 }
