@@ -11,6 +11,9 @@ let isPause = false;
 const boardWidth = gameBoard.width;
 
 // IN-GAME PARAMETERS
+let rainbowColors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+let rainbowIndex = 0;
+
 const units = 25;
 const nCells = 20;
 const cellSize = boardWidth / nCells;
@@ -67,14 +70,21 @@ function updateGameSpeed(newIntervalTime) {
 
 function drawGame() {
     ctx.clearRect(0, 0, boardWidth, boardWidth);
-    ctx.fillStyle = color;
-    snake.forEach(part => {
-        ctx.fillRect(part.x, part.y, drawSize, drawSize)
-    });
+
+    if (color === 'rainbow') {
+        snake.forEach((part, index) => {
+            ctx.fillStyle = rainbowColors[(rainbowIndex + index) % rainbowColors.length];
+            ctx.fillRect(part.x, part.y, drawSize, drawSize);
+        });
+    } else {
+        ctx.fillStyle = color;
+        snake.forEach(part => {
+            ctx.fillRect(part.x, part.y, drawSize, drawSize);
+        });
+    }
 
     ctx.fillStyle = 'red';
     ctx.fillRect(apple.x, apple.y, drawSize, drawSize);
-
 }
 
 function gameOver() {
@@ -215,6 +225,7 @@ function increaseLength () {
 function eatApple () {
         generateApple();
         increaseLength();
+        rainbowIndex = (rainbowIndex + 1) % rainbowColors.length;
         drawGame();
 }
 
@@ -257,7 +268,7 @@ function handleBlue() {
 }
 
 function handleRainbow() {
-    
+    color = 'rainbow';
 }
 
 buttons.forEach(button => {
