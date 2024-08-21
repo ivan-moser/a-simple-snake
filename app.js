@@ -4,6 +4,7 @@ const resetBtn = document.querySelector('#resetBtn');
 const ctx = gameBoard.getContext('2d');
 
 let isGameOver = false;
+let isPause = false;
 
 //  DEFAULT WINDOW PARAMETERS
 const boardWidth = gameBoard.width;
@@ -14,7 +15,7 @@ const nCells = 20;
 const cellSize = boardWidth / nCells;
 const drawSize = cellSize - 1;
 let intervalTime = 200;
-let gameInterval = setInterval(update, intervalTime);
+let gameInterval = setInterval(update, intervalTime); 
 
 // SNAKE
 let snake = [
@@ -35,6 +36,7 @@ let apple = {x: 0, y: 0};
 
 window.onload = function() {
     document.addEventListener('keydown', changeDirection);
+    document.addEventListener('keydown', pause);
     resetBtn.addEventListener('click', resetGame);
     spawnSnake();
     generateApple();
@@ -89,6 +91,25 @@ function resetGame() {
     generateApple();
     updateScore();
     updateGameSpeed(200);
+}
+
+function pause (event) {
+    if ((event.key === 'Space' || event.key === ' ') && isPause === false) {
+        clearInterval(gameInterval);
+        pauseScreen();
+        isPause = true;
+    } else if ((event.key === 'Space' || event.key === ' ') && isPause === true) {
+        updateGameSpeed(200);
+        isPause = false;
+    }
+}
+
+function pauseScreen () {
+    ctx.font = '70px Comic Sans MS'
+    ctx.fillStyle = 'lightgreen'
+
+    ctx.fillText('PAUSE', (boardWidth / 2) - 110, boardWidth / 2);
+    
 }
 
 function resetColors() {
@@ -214,7 +235,9 @@ function isGameOverFunc(snake, direction) {
 }
 
 // PULSANTE RESET
-resetBtn.addEventListener('click', resetGame);
+resetBtn.addEventListener('click', resetGame => {
+    event.target.blur();
+});
 
 
 

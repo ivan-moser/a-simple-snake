@@ -99,6 +99,7 @@ html, body {
 #resetBtn:focus-visible,  #resetBtn:focus{
     transform: none;
     border: none;
+    outline: none;
 }
 
 #resetBtn:active {
