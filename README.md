@@ -4,6 +4,8 @@ This is a simple snake game, coded in vanilla JavaScript, HTML5, and CSS3.
 
 ## Description
 
+<img src="https://github.com/user-attachments/assets/15c98c8a-c98d-4f0b-84ad-0907cce53882" alt="description" width="300" height="470">
+
 In this little minigame, we have implemented skins, game states, and basic snake operations.
 We are currently working to add some cool features like:
 * Login page
