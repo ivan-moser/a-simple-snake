@@ -30,11 +30,11 @@ The commands are very simple; in fact, there are just a few:
 
 Contributors' names and contact info:
 
-Bernardini Gioele  
-( [https://github.com/gioele-bernardini](https://github.com/gioele-bernardini) )
-
 Moser Ivan  
 ( [https://github.com/ivan-moser](https://github.com/ivan-moser) )
+
+Bernardini Gioele  
+( [https://github.com/gioele-bernardini](https://github.com/gioele-bernardini) )
 
 ## Version History
 
