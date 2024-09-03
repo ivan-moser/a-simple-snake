@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A simple snake</title>
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="assets/styles/style.css" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -22,12 +22,15 @@
             <button id="blue" class="colors"></button>
             <button id="pink" class="colors"></button>
             <button id="rainbow" class="colors"></button>
-            
         </div>
-        <p class="subtitles">A Simple Snake© Projected by Bernardini Gioele & Moser Ivan</p>
+        <p class="subtitles">A Simple Snake© Projected by & Moser Ivan & Bernardini Gioele</p>
     </div>
-        
-    <script src="index.js"></script>
-    <script src="app.js"></script>
+    
+    <!-- Include JS files in the correct order as modules -->
+    <script type="module" src="js/snake.js"></script>
+    <script type="module" src="js/apple.js"></script>
+    <script type="module" src="js/controls.js"></script>
+    <script type="module" src="js/game.js"></script>
 </body>
 </html>
+
